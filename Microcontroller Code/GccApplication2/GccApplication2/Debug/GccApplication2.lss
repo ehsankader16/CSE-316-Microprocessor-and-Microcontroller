@@ -1,0 +1,234 @@
+
+GccApplication2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000130  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000184  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000184  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001b4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000001f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000610  00000000  00000000  00000210  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000052b  00000000  00000000  00000820  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000024f  00000000  00000000  00000d4b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000034  00000000  00000000  00000f9c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000376  00000000  00000000  00000fd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000015d  00000000  00000000  00001346  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  000014a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 96 00 	jmp	0x12c	; 0x12c <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+
+#include <avr/io.h>
+
+
+int main(void)
+{
+  6c:	cf 93       	push	r28
+  6e:	df 93       	push	r29
+  70:	00 d0       	rcall	.+0      	; 0x72 <main+0x6>
+  72:	00 d0       	rcall	.+0      	; 0x74 <main+0x8>
+  74:	00 d0       	rcall	.+0      	; 0x76 <main+0xa>
+  76:	cd b7       	in	r28, 0x3d	; 61
+  78:	de b7       	in	r29, 0x3e	; 62
+    /* Replace with your application code */
+	DDRA = 0b00000000;	// 0-2 for reg1Addr & 2-5 for reg2Addr, 6 for regwrite, 7 for clk
+  7a:	1a ba       	out	0x1a, r1	; 26
+	DDRB = 0b00000000;	// 0-3 for writeData & 4-7 for writeRegAddr
+  7c:	17 ba       	out	0x17, r1	; 23
+	DDRD = 0b11111000; // 0-2 for taking input for check register, 3-6 to output the value of the check register; we are doing this for testing purpose
+  7e:	88 ef       	ldi	r24, 0xF8	; 248
+  80:	81 bb       	out	0x11, r24	; 17
+	DDRC = 0b11111111;	// 0-3 for reg1Data & 4-7 for reg2Data
+  82:	8f ef       	ldi	r24, 0xFF	; 255
+  84:	84 bb       	out	0x14, r24	; 20
+
+	unsigned char regArr[] = {0, 0, 0, 0, 0, 0};
+  86:	fe 01       	movw	r30, r28
+  88:	31 96       	adiw	r30, 0x01	; 1
+  8a:	86 e0       	ldi	r24, 0x06	; 6
+  8c:	df 01       	movw	r26, r30
+  8e:	1d 92       	st	X+, r1
+  90:	8a 95       	dec	r24
+  92:	e9 f7       	brne	.-6      	; 0x8e <main+0x22>
+	unsigned char reg1Addr, reg2Addr; //register address for reading
+	unsigned char writeData=0, writeRegAddr=0; //data and address for writing
+	unsigned char regWrite = 0;
+	unsigned char prevClk = 0;
+	unsigned char currClk = 0;
+  94:	80 e0       	ldi	r24, 0x00	; 0
+	DDRC = 0b11111111;	// 0-3 for reg1Data & 4-7 for reg2Data
+
+	unsigned char regArr[] = {0, 0, 0, 0, 0, 0};
+	unsigned char reg1Addr, reg2Addr; //register address for reading
+	unsigned char writeData=0, writeRegAddr=0; //data and address for writing
+	unsigned char regWrite = 0;
+  96:	30 e0       	ldi	r19, 0x00	; 0
+	DDRD = 0b11111000; // 0-2 for taking input for check register, 3-6 to output the value of the check register; we are doing this for testing purpose
+	DDRC = 0b11111111;	// 0-3 for reg1Data & 4-7 for reg2Data
+
+	unsigned char regArr[] = {0, 0, 0, 0, 0, 0};
+	unsigned char reg1Addr, reg2Addr; //register address for reading
+	unsigned char writeData=0, writeRegAddr=0; //data and address for writing
+  98:	40 e0       	ldi	r20, 0x00	; 0
+  9a:	60 e0       	ldi	r22, 0x00	; 0
+
+
+    while (1)
+    {
+		prevClk = currClk;
+		currClk = (PINA & 0b10000000); //7 for clk
+  9c:	29 b3       	in	r18, 0x19	; 25
+  9e:	20 78       	andi	r18, 0x80	; 128
+		if(regWrite && (prevClk && !currClk) && writeRegAddr) {
+  a0:	33 23       	and	r19, r19
+  a2:	69 f0       	breq	.+26     	; 0xbe <main+0x52>
+  a4:	88 23       	and	r24, r24
+  a6:	59 f0       	breq	.+22     	; 0xbe <main+0x52>
+  a8:	21 11       	cpse	r18, r1
+  aa:	09 c0       	rjmp	.+18     	; 0xbe <main+0x52>
+  ac:	44 23       	and	r20, r20
+  ae:	39 f0       	breq	.+14     	; 0xbe <main+0x52>
+			regArr[writeRegAddr] = writeData;
+  b0:	e1 e0       	ldi	r30, 0x01	; 1
+  b2:	f0 e0       	ldi	r31, 0x00	; 0
+  b4:	ec 0f       	add	r30, r28
+  b6:	fd 1f       	adc	r31, r29
+  b8:	e4 0f       	add	r30, r20
+  ba:	f1 1d       	adc	r31, r1
+  bc:	60 83       	st	Z, r22
+		}
+		reg1Addr = PINA & 0b0000111;
+  be:	89 b3       	in	r24, 0x19	; 25
+  c0:	87 70       	andi	r24, 0x07	; 7
+		reg2Addr = (PINA & 0b00111000) >> 3;
+  c2:	e9 b3       	in	r30, 0x19	; 25
+  c4:	e8 73       	andi	r30, 0x38	; 56
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+
+		writeData = PINB & 0b00001111;
+  c8:	96 b3       	in	r25, 0x16	; 22
+  ca:	69 2f       	mov	r22, r25
+  cc:	6f 70       	andi	r22, 0x0F	; 15
+		writeRegAddr = (PINB & 0b11110000) >> 4;
+  ce:	96 b3       	in	r25, 0x16	; 22
+  d0:	49 2f       	mov	r20, r25
+  d2:	42 95       	swap	r20
+  d4:	4f 70       	andi	r20, 0x0F	; 15
+
+		regWrite = (PINA & 0b01000000); //6th bir for regwrite
+  d6:	39 b3       	in	r19, 0x19	; 25
+  d8:	30 74       	andi	r19, 0x40	; 64
+		
+		PORTC = regArr[reg1Addr] | (regArr[reg2Addr] << 4);
+  da:	a1 e0       	ldi	r26, 0x01	; 1
+  dc:	b0 e0       	ldi	r27, 0x00	; 0
+  de:	ac 0f       	add	r26, r28
+  e0:	bd 1f       	adc	r27, r29
+  e2:	a8 0f       	add	r26, r24
+  e4:	b1 1d       	adc	r27, r1
+  e6:	5c 91       	ld	r21, X
+  e8:	f6 95       	lsr	r31
+  ea:	e7 95       	ror	r30
+  ec:	f6 95       	lsr	r31
+  ee:	e7 95       	ror	r30
+  f0:	f6 95       	lsr	r31
+  f2:	e7 95       	ror	r30
+  f4:	81 e0       	ldi	r24, 0x01	; 1
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	8c 0f       	add	r24, r28
+  fa:	9d 1f       	adc	r25, r29
+  fc:	e8 0f       	add	r30, r24
+  fe:	f9 1f       	adc	r31, r25
+ 100:	90 81       	ld	r25, Z
+ 102:	a0 e1       	ldi	r26, 0x10	; 16
+ 104:	9a 9f       	mul	r25, r26
+ 106:	c0 01       	movw	r24, r0
+ 108:	11 24       	eor	r1, r1
+ 10a:	85 2b       	or	r24, r21
+ 10c:	85 bb       	out	0x15, r24	; 21
+
+		checkRegAddr = (PIND & 0b00000111);
+ 10e:	80 b3       	in	r24, 0x10	; 16
+ 110:	87 70       	andi	r24, 0x07	; 7
+		PORTD = (regArr[checkRegAddr] << 3);
+ 112:	e1 e0       	ldi	r30, 0x01	; 1
+ 114:	f0 e0       	ldi	r31, 0x00	; 0
+ 116:	ec 0f       	add	r30, r28
+ 118:	fd 1f       	adc	r31, r29
+ 11a:	e8 0f       	add	r30, r24
+ 11c:	f1 1d       	adc	r31, r1
+ 11e:	80 81       	ld	r24, Z
+ 120:	88 0f       	add	r24, r24
+ 122:	88 0f       	add	r24, r24
+ 124:	88 0f       	add	r24, r24
+ 126:	82 bb       	out	0x12, r24	; 18
+
+
+    while (1)
+    {
+		prevClk = currClk;
+		currClk = (PINA & 0b10000000); //7 for clk
+ 128:	82 2f       	mov	r24, r18
+		PORTC = regArr[reg1Addr] | (regArr[reg2Addr] << 4);
+
+		checkRegAddr = (PIND & 0b00000111);
+		PORTD = (regArr[checkRegAddr] << 3);
+
+    }
+ 12a:	b8 cf       	rjmp	.-144    	; 0x9c <main+0x30>
+
+0000012c <_exit>:
+ 12c:	f8 94       	cli
+
+0000012e <__stop_program>:
+ 12e:	ff cf       	rjmp	.-2      	; 0x12e <__stop_program>

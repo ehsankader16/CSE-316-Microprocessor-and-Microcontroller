@@ -1,0 +1,1677 @@
+
+CSE316_Project.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000a7a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  00000a7a  00000b0e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000000db  0080006a  0080006a  00000b18  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000b18  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000b48  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000088  00000000  00000000  00000b84  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000bbb  00000000  00000000  00000c0c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006e8  00000000  00000000  000017c7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000823  00000000  00000000  00001eaf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000190  00000000  00000000  000026d4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000501  00000000  00000000  00002864  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000514  00000000  00000000  00002d65  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a8  00000000  00000000  00003279  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 40 04 	jmp	0x880	; 0x880 <__vector_1>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e7       	ldi	r30, 0x7A	; 122
+  68:	fa e0       	ldi	r31, 0x0A	; 10
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 34       	cpi	r26, 0x45	; 69
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 aa 04 	call	0x954	; 0x954 <main>
+  8a:	0c 94 3b 05 	jmp	0xa76	; 0xa76 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <initEnemyBullets>:
+	int timeout;
+};
+
+struct EnemyBullet enemyBullet[10];
+void initEnemyBullets() {
+	for (int i = 0; i< 10; i++)
+  92:	20 e0       	ldi	r18, 0x00	; 0
+  94:	30 e0       	ldi	r19, 0x00	; 0
+  96:	16 c0       	rjmp	.+44     	; 0xc4 <initEnemyBullets+0x32>
+	{
+		enemyBullet[i].isActive = 0;
+  98:	f9 01       	movw	r30, r18
+  9a:	ee 0f       	add	r30, r30
+  9c:	ff 1f       	adc	r31, r31
+  9e:	c9 01       	movw	r24, r18
+  a0:	88 0f       	add	r24, r24
+  a2:	99 1f       	adc	r25, r25
+  a4:	88 0f       	add	r24, r24
+  a6:	99 1f       	adc	r25, r25
+  a8:	88 0f       	add	r24, r24
+  aa:	99 1f       	adc	r25, r25
+  ac:	e8 0f       	add	r30, r24
+  ae:	f9 1f       	adc	r31, r25
+  b0:	ef 51       	subi	r30, 0x1F	; 31
+  b2:	ff 4f       	sbci	r31, 0xFF	; 255
+  b4:	11 82       	std	Z+1, r1	; 0x01
+  b6:	10 82       	st	Z, r1
+		enemyBullet[i].hasHit = 0;
+  b8:	13 82       	std	Z+3, r1	; 0x03
+  ba:	12 82       	std	Z+2, r1	; 0x02
+		enemyBullet[i].timeout = 0;
+  bc:	11 86       	std	Z+9, r1	; 0x09
+  be:	10 86       	std	Z+8, r1	; 0x08
+	int timeout;
+};
+
+struct EnemyBullet enemyBullet[10];
+void initEnemyBullets() {
+	for (int i = 0; i< 10; i++)
+  c0:	2f 5f       	subi	r18, 0xFF	; 255
+  c2:	3f 4f       	sbci	r19, 0xFF	; 255
+  c4:	2a 30       	cpi	r18, 0x0A	; 10
+  c6:	31 05       	cpc	r19, r1
+  c8:	3c f3       	brlt	.-50     	; 0x98 <initEnemyBullets+0x6>
+	{
+		enemyBullet[i].isActive = 0;
+		enemyBullet[i].hasHit = 0;
+		enemyBullet[i].timeout = 0;
+	}
+}
+  ca:	08 95       	ret
+
+000000cc <binToImage>:
+{
+	long lMask = 0b111111110000000000000000;
+	long cMask = 0b000000001111111100000000;
+	long rMask = 0b000000000000000011111111;
+	
+	for (int i = 0 ; i  < 8; i++)
+  cc:	80 e0       	ldi	r24, 0x00	; 0
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	11 c0       	rjmp	.+34     	; 0xf4 <binToImage+0x28>
+	{
+		char lVal = (char) ((binImage[i] & lMask) >> 16);
+  d2:	fc 01       	movw	r30, r24
+  d4:	ee 0f       	add	r30, r30
+  d6:	ff 1f       	adc	r31, r31
+  d8:	ee 0f       	add	r30, r30
+  da:	ff 1f       	adc	r31, r31
+  dc:	ef 55       	subi	r30, 0x5F	; 95
+  de:	ff 4f       	sbci	r31, 0xFF	; 255
+  e0:	20 81       	ld	r18, Z
+  e2:	31 81       	ldd	r19, Z+1	; 0x01
+  e4:	42 81       	ldd	r20, Z+2	; 0x02
+		char cVal = (char) ((binImage[i] & cMask) >> 8);
+		char rVal = (char) (binImage[i] & rMask);
+		images[0][i] = lVal;
+  e6:	fc 01       	movw	r30, r24
+  e8:	e6 59       	subi	r30, 0x96	; 150
+  ea:	ff 4f       	sbci	r31, 0xFF	; 255
+  ec:	40 83       	st	Z, r20
+		images[1][i] = cVal;
+  ee:	30 87       	std	Z+8, r19	; 0x08
+		images[2][i] = rVal;
+  f0:	20 8b       	std	Z+16, r18	; 0x10
+{
+	long lMask = 0b111111110000000000000000;
+	long cMask = 0b000000001111111100000000;
+	long rMask = 0b000000000000000011111111;
+	
+	for (int i = 0 ; i  < 8; i++)
+  f2:	01 96       	adiw	r24, 0x01	; 1
+  f4:	88 30       	cpi	r24, 0x08	; 8
+  f6:	91 05       	cpc	r25, r1
+  f8:	64 f3       	brlt	.-40     	; 0xd2 <binToImage+0x6>
+  fa:	80 e0       	ldi	r24, 0x00	; 0
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	12 c0       	rjmp	.+36     	; 0x124 <binToImage+0x58>
+		images[2][i] = rVal;
+	}
+	
+	for (int i = 0 ; i  < 8; i++)
+	{
+		char lVal = (char) ((binImage[i+8] & lMask) >> 16);
+ 100:	fc 01       	movw	r30, r24
+ 102:	38 96       	adiw	r30, 0x08	; 8
+ 104:	ee 0f       	add	r30, r30
+ 106:	ff 1f       	adc	r31, r31
+ 108:	ee 0f       	add	r30, r30
+ 10a:	ff 1f       	adc	r31, r31
+ 10c:	ef 55       	subi	r30, 0x5F	; 95
+ 10e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 110:	20 81       	ld	r18, Z
+ 112:	31 81       	ldd	r19, Z+1	; 0x01
+ 114:	42 81       	ldd	r20, Z+2	; 0x02
+		char cVal = (char) ((binImage[i+8] & cMask) >> 8);
+		char rVal = (char) (binImage[i+8] & rMask);
+		images[3][i] = lVal;
+ 116:	fc 01       	movw	r30, r24
+ 118:	e6 59       	subi	r30, 0x96	; 150
+ 11a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 11c:	40 8f       	std	Z+24, r20	; 0x18
+		images[4][i] = cVal;
+ 11e:	30 a3       	std	Z+32, r19	; 0x20
+		images[5][i] = rVal;
+ 120:	20 a7       	std	Z+40, r18	; 0x28
+		images[0][i] = lVal;
+		images[1][i] = cVal;
+		images[2][i] = rVal;
+	}
+	
+	for (int i = 0 ; i  < 8; i++)
+ 122:	01 96       	adiw	r24, 0x01	; 1
+ 124:	88 30       	cpi	r24, 0x08	; 8
+ 126:	91 05       	cpc	r25, r1
+ 128:	5c f3       	brlt	.-42     	; 0x100 <binToImage+0x34>
+		char rVal = (char) (binImage[i+8] & rMask);
+		images[3][i] = lVal;
+		images[4][i] = cVal;
+		images[5][i] = rVal;
+	}
+}
+ 12a:	08 95       	ret
+
+0000012c <erasePlayer>:
+
+void erasePlayer()
+{
+	binImage[playerPos-1] &= 0b011111111111111111111111;
+ 12c:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <playerPos>
+ 130:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <playerPos+0x1>
+ 134:	fc 01       	movw	r30, r24
+ 136:	31 97       	sbiw	r30, 0x01	; 1
+ 138:	ee 0f       	add	r30, r30
+ 13a:	ff 1f       	adc	r31, r31
+ 13c:	ee 0f       	add	r30, r30
+ 13e:	ff 1f       	adc	r31, r31
+ 140:	ef 55       	subi	r30, 0x5F	; 95
+ 142:	ff 4f       	sbci	r31, 0xFF	; 255
+ 144:	40 81       	ld	r20, Z
+ 146:	51 81       	ldd	r21, Z+1	; 0x01
+ 148:	62 81       	ldd	r22, Z+2	; 0x02
+ 14a:	73 81       	ldd	r23, Z+3	; 0x03
+ 14c:	6f 77       	andi	r22, 0x7F	; 127
+ 14e:	77 27       	eor	r23, r23
+ 150:	40 83       	st	Z, r20
+ 152:	51 83       	std	Z+1, r21	; 0x01
+ 154:	62 83       	std	Z+2, r22	; 0x02
+ 156:	73 83       	std	Z+3, r23	; 0x03
+	binImage[playerPos] &= 0b001111111111111111111111;
+ 158:	fc 01       	movw	r30, r24
+ 15a:	ee 0f       	add	r30, r30
+ 15c:	ff 1f       	adc	r31, r31
+ 15e:	ee 0f       	add	r30, r30
+ 160:	ff 1f       	adc	r31, r31
+ 162:	ef 55       	subi	r30, 0x5F	; 95
+ 164:	ff 4f       	sbci	r31, 0xFF	; 255
+ 166:	40 81       	ld	r20, Z
+ 168:	51 81       	ldd	r21, Z+1	; 0x01
+ 16a:	62 81       	ldd	r22, Z+2	; 0x02
+ 16c:	73 81       	ldd	r23, Z+3	; 0x03
+ 16e:	6f 73       	andi	r22, 0x3F	; 63
+ 170:	77 27       	eor	r23, r23
+ 172:	40 83       	st	Z, r20
+ 174:	51 83       	std	Z+1, r21	; 0x01
+ 176:	62 83       	std	Z+2, r22	; 0x02
+ 178:	73 83       	std	Z+3, r23	; 0x03
+	binImage[playerPos+1] &= 0b011111111111111111111111;
+ 17a:	fc 01       	movw	r30, r24
+ 17c:	31 96       	adiw	r30, 0x01	; 1
+ 17e:	ee 0f       	add	r30, r30
+ 180:	ff 1f       	adc	r31, r31
+ 182:	ee 0f       	add	r30, r30
+ 184:	ff 1f       	adc	r31, r31
+ 186:	ef 55       	subi	r30, 0x5F	; 95
+ 188:	ff 4f       	sbci	r31, 0xFF	; 255
+ 18a:	80 81       	ld	r24, Z
+ 18c:	91 81       	ldd	r25, Z+1	; 0x01
+ 18e:	a2 81       	ldd	r26, Z+2	; 0x02
+ 190:	b3 81       	ldd	r27, Z+3	; 0x03
+ 192:	af 77       	andi	r26, 0x7F	; 127
+ 194:	bb 27       	eor	r27, r27
+ 196:	80 83       	st	Z, r24
+ 198:	91 83       	std	Z+1, r25	; 0x01
+ 19a:	a2 83       	std	Z+2, r26	; 0x02
+ 19c:	b3 83       	std	Z+3, r27	; 0x03
+ 19e:	08 95       	ret
+
+000001a0 <drawPlayer>:
+}
+
+void drawPlayer()
+{
+	binImage[playerPos-1]	|=	0b100000000000000000000000;
+ 1a0:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <playerPos>
+ 1a4:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <playerPos+0x1>
+ 1a8:	fc 01       	movw	r30, r24
+ 1aa:	31 97       	sbiw	r30, 0x01	; 1
+ 1ac:	ee 0f       	add	r30, r30
+ 1ae:	ff 1f       	adc	r31, r31
+ 1b0:	ee 0f       	add	r30, r30
+ 1b2:	ff 1f       	adc	r31, r31
+ 1b4:	ef 55       	subi	r30, 0x5F	; 95
+ 1b6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1b8:	40 81       	ld	r20, Z
+ 1ba:	51 81       	ldd	r21, Z+1	; 0x01
+ 1bc:	62 81       	ldd	r22, Z+2	; 0x02
+ 1be:	73 81       	ldd	r23, Z+3	; 0x03
+ 1c0:	60 68       	ori	r22, 0x80	; 128
+ 1c2:	40 83       	st	Z, r20
+ 1c4:	51 83       	std	Z+1, r21	; 0x01
+ 1c6:	62 83       	std	Z+2, r22	; 0x02
+ 1c8:	73 83       	std	Z+3, r23	; 0x03
+	binImage[playerPos]		|=	0b110000000000000000000000;
+ 1ca:	fc 01       	movw	r30, r24
+ 1cc:	ee 0f       	add	r30, r30
+ 1ce:	ff 1f       	adc	r31, r31
+ 1d0:	ee 0f       	add	r30, r30
+ 1d2:	ff 1f       	adc	r31, r31
+ 1d4:	ef 55       	subi	r30, 0x5F	; 95
+ 1d6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1d8:	40 81       	ld	r20, Z
+ 1da:	51 81       	ldd	r21, Z+1	; 0x01
+ 1dc:	62 81       	ldd	r22, Z+2	; 0x02
+ 1de:	73 81       	ldd	r23, Z+3	; 0x03
+ 1e0:	60 6c       	ori	r22, 0xC0	; 192
+ 1e2:	40 83       	st	Z, r20
+ 1e4:	51 83       	std	Z+1, r21	; 0x01
+ 1e6:	62 83       	std	Z+2, r22	; 0x02
+ 1e8:	73 83       	std	Z+3, r23	; 0x03
+	binImage[playerPos+1]	|=	0b100000000000000000000000;
+ 1ea:	fc 01       	movw	r30, r24
+ 1ec:	31 96       	adiw	r30, 0x01	; 1
+ 1ee:	ee 0f       	add	r30, r30
+ 1f0:	ff 1f       	adc	r31, r31
+ 1f2:	ee 0f       	add	r30, r30
+ 1f4:	ff 1f       	adc	r31, r31
+ 1f6:	ef 55       	subi	r30, 0x5F	; 95
+ 1f8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1fa:	80 81       	ld	r24, Z
+ 1fc:	91 81       	ldd	r25, Z+1	; 0x01
+ 1fe:	a2 81       	ldd	r26, Z+2	; 0x02
+ 200:	b3 81       	ldd	r27, Z+3	; 0x03
+ 202:	a0 68       	ori	r26, 0x80	; 128
+ 204:	80 83       	st	Z, r24
+ 206:	91 83       	std	Z+1, r25	; 0x01
+ 208:	a2 83       	std	Z+2, r26	; 0x02
+ 20a:	b3 83       	std	Z+3, r27	; 0x03
+ 20c:	08 95       	ret
+
+0000020e <eraseEnemy>:
+}
+
+void eraseEnemy()
+{
+	binImage[enemyPos-1] &= 0b111111111111111111111100;
+ 20e:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <enemyPos>
+ 212:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <enemyPos+0x1>
+ 216:	fc 01       	movw	r30, r24
+ 218:	31 97       	sbiw	r30, 0x01	; 1
+ 21a:	ee 0f       	add	r30, r30
+ 21c:	ff 1f       	adc	r31, r31
+ 21e:	ee 0f       	add	r30, r30
+ 220:	ff 1f       	adc	r31, r31
+ 222:	ef 55       	subi	r30, 0x5F	; 95
+ 224:	ff 4f       	sbci	r31, 0xFF	; 255
+ 226:	40 81       	ld	r20, Z
+ 228:	51 81       	ldd	r21, Z+1	; 0x01
+ 22a:	62 81       	ldd	r22, Z+2	; 0x02
+ 22c:	73 81       	ldd	r23, Z+3	; 0x03
+ 22e:	4c 7f       	andi	r20, 0xFC	; 252
+ 230:	77 27       	eor	r23, r23
+ 232:	40 83       	st	Z, r20
+ 234:	51 83       	std	Z+1, r21	; 0x01
+ 236:	62 83       	std	Z+2, r22	; 0x02
+ 238:	73 83       	std	Z+3, r23	; 0x03
+	binImage[enemyPos] &= 0b111111111111111111111110;
+ 23a:	fc 01       	movw	r30, r24
+ 23c:	ee 0f       	add	r30, r30
+ 23e:	ff 1f       	adc	r31, r31
+ 240:	ee 0f       	add	r30, r30
+ 242:	ff 1f       	adc	r31, r31
+ 244:	ef 55       	subi	r30, 0x5F	; 95
+ 246:	ff 4f       	sbci	r31, 0xFF	; 255
+ 248:	40 81       	ld	r20, Z
+ 24a:	51 81       	ldd	r21, Z+1	; 0x01
+ 24c:	62 81       	ldd	r22, Z+2	; 0x02
+ 24e:	73 81       	ldd	r23, Z+3	; 0x03
+ 250:	4e 7f       	andi	r20, 0xFE	; 254
+ 252:	77 27       	eor	r23, r23
+ 254:	40 83       	st	Z, r20
+ 256:	51 83       	std	Z+1, r21	; 0x01
+ 258:	62 83       	std	Z+2, r22	; 0x02
+ 25a:	73 83       	std	Z+3, r23	; 0x03
+	binImage[enemyPos+1] &= 0b111111111111111111111100;
+ 25c:	fc 01       	movw	r30, r24
+ 25e:	31 96       	adiw	r30, 0x01	; 1
+ 260:	ee 0f       	add	r30, r30
+ 262:	ff 1f       	adc	r31, r31
+ 264:	ee 0f       	add	r30, r30
+ 266:	ff 1f       	adc	r31, r31
+ 268:	ef 55       	subi	r30, 0x5F	; 95
+ 26a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 26c:	80 81       	ld	r24, Z
+ 26e:	91 81       	ldd	r25, Z+1	; 0x01
+ 270:	a2 81       	ldd	r26, Z+2	; 0x02
+ 272:	b3 81       	ldd	r27, Z+3	; 0x03
+ 274:	8c 7f       	andi	r24, 0xFC	; 252
+ 276:	bb 27       	eor	r27, r27
+ 278:	80 83       	st	Z, r24
+ 27a:	91 83       	std	Z+1, r25	; 0x01
+ 27c:	a2 83       	std	Z+2, r26	; 0x02
+ 27e:	b3 83       	std	Z+3, r27	; 0x03
+ 280:	08 95       	ret
+
+00000282 <drawEnemy>:
+}
+
+void drawEnemy()
+{
+	binImage[enemyPos-1] |=	0b000000000000000000000011;
+ 282:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <enemyPos>
+ 286:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <enemyPos+0x1>
+ 28a:	fc 01       	movw	r30, r24
+ 28c:	31 97       	sbiw	r30, 0x01	; 1
+ 28e:	ee 0f       	add	r30, r30
+ 290:	ff 1f       	adc	r31, r31
+ 292:	ee 0f       	add	r30, r30
+ 294:	ff 1f       	adc	r31, r31
+ 296:	ef 55       	subi	r30, 0x5F	; 95
+ 298:	ff 4f       	sbci	r31, 0xFF	; 255
+ 29a:	40 81       	ld	r20, Z
+ 29c:	51 81       	ldd	r21, Z+1	; 0x01
+ 29e:	62 81       	ldd	r22, Z+2	; 0x02
+ 2a0:	73 81       	ldd	r23, Z+3	; 0x03
+ 2a2:	43 60       	ori	r20, 0x03	; 3
+ 2a4:	40 83       	st	Z, r20
+ 2a6:	51 83       	std	Z+1, r21	; 0x01
+ 2a8:	62 83       	std	Z+2, r22	; 0x02
+ 2aa:	73 83       	std	Z+3, r23	; 0x03
+	binImage[enemyPos] |=		0b000000000000000000000001;
+ 2ac:	fc 01       	movw	r30, r24
+ 2ae:	ee 0f       	add	r30, r30
+ 2b0:	ff 1f       	adc	r31, r31
+ 2b2:	ee 0f       	add	r30, r30
+ 2b4:	ff 1f       	adc	r31, r31
+ 2b6:	ef 55       	subi	r30, 0x5F	; 95
+ 2b8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2ba:	40 81       	ld	r20, Z
+ 2bc:	51 81       	ldd	r21, Z+1	; 0x01
+ 2be:	62 81       	ldd	r22, Z+2	; 0x02
+ 2c0:	73 81       	ldd	r23, Z+3	; 0x03
+ 2c2:	41 60       	ori	r20, 0x01	; 1
+ 2c4:	40 83       	st	Z, r20
+ 2c6:	51 83       	std	Z+1, r21	; 0x01
+ 2c8:	62 83       	std	Z+2, r22	; 0x02
+ 2ca:	73 83       	std	Z+3, r23	; 0x03
+	binImage[enemyPos+1] |=	0b000000000000000000000011;
+ 2cc:	fc 01       	movw	r30, r24
+ 2ce:	31 96       	adiw	r30, 0x01	; 1
+ 2d0:	ee 0f       	add	r30, r30
+ 2d2:	ff 1f       	adc	r31, r31
+ 2d4:	ee 0f       	add	r30, r30
+ 2d6:	ff 1f       	adc	r31, r31
+ 2d8:	ef 55       	subi	r30, 0x5F	; 95
+ 2da:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2dc:	80 81       	ld	r24, Z
+ 2de:	91 81       	ldd	r25, Z+1	; 0x01
+ 2e0:	a2 81       	ldd	r26, Z+2	; 0x02
+ 2e2:	b3 81       	ldd	r27, Z+3	; 0x03
+ 2e4:	83 60       	ori	r24, 0x03	; 3
+ 2e6:	80 83       	st	Z, r24
+ 2e8:	91 83       	std	Z+1, r25	; 0x01
+ 2ea:	a2 83       	std	Z+2, r26	; 0x02
+ 2ec:	b3 83       	std	Z+3, r27	; 0x03
+ 2ee:	08 95       	ret
+
+000002f0 <handleEnemyMovement>:
+}
+
+void handleEnemyMovement(){
+	eraseEnemy();
+ 2f0:	0e 94 07 01 	call	0x20e	; 0x20e <eraseEnemy>
+	if(enemyPos == 1) {
+ 2f4:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <enemyPos>
+ 2f8:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <enemyPos+0x1>
+ 2fc:	81 30       	cpi	r24, 0x01	; 1
+ 2fe:	91 05       	cpc	r25, r1
+ 300:	29 f4       	brne	.+10     	; 0x30c <handleEnemyMovement+0x1c>
+		enemyUpFlag = 0;
+ 302:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <enemyUpFlag+0x1>
+ 306:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <enemyUpFlag>
+ 30a:	09 c0       	rjmp	.+18     	; 0x31e <handleEnemyMovement+0x2e>
+		} else if(enemyPos == 12) {
+ 30c:	8c 30       	cpi	r24, 0x0C	; 12
+ 30e:	91 05       	cpc	r25, r1
+ 310:	31 f4       	brne	.+12     	; 0x31e <handleEnemyMovement+0x2e>
+		enemyUpFlag = 1;
+ 312:	21 e0       	ldi	r18, 0x01	; 1
+ 314:	30 e0       	ldi	r19, 0x00	; 0
+ 316:	30 93 63 00 	sts	0x0063, r19	; 0x800063 <enemyUpFlag+0x1>
+ 31a:	20 93 62 00 	sts	0x0062, r18	; 0x800062 <enemyUpFlag>
+	}
+	if(enemyUpFlag) {
+ 31e:	20 91 62 00 	lds	r18, 0x0062	; 0x800062 <enemyUpFlag>
+ 322:	30 91 63 00 	lds	r19, 0x0063	; 0x800063 <enemyUpFlag+0x1>
+ 326:	23 2b       	or	r18, r19
+ 328:	31 f0       	breq	.+12     	; 0x336 <handleEnemyMovement+0x46>
+		enemyPos--;
+ 32a:	01 97       	sbiw	r24, 0x01	; 1
+ 32c:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <enemyPos+0x1>
+ 330:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <enemyPos>
+ 334:	05 c0       	rjmp	.+10     	; 0x340 <handleEnemyMovement+0x50>
+		} else {
+		enemyPos++;
+ 336:	01 96       	adiw	r24, 0x01	; 1
+ 338:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <enemyPos+0x1>
+ 33c:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <enemyPos>
+	}
+	drawEnemy();
+ 340:	0e 94 41 01 	call	0x282	; 0x282 <drawEnemy>
+ 344:	08 95       	ret
+
+00000346 <handleEnemyBullet>:
+}
+
+void handleEnemyBullet()
+{
+ 346:	8f 92       	push	r8
+ 348:	9f 92       	push	r9
+ 34a:	af 92       	push	r10
+ 34c:	bf 92       	push	r11
+ 34e:	cf 92       	push	r12
+ 350:	df 92       	push	r13
+ 352:	ef 92       	push	r14
+ 354:	ff 92       	push	r15
+	
+	for(int i = 0; i < 5; i++) {
+ 356:	80 e0       	ldi	r24, 0x00	; 0
+ 358:	90 e0       	ldi	r25, 0x00	; 0
+ 35a:	7f c1       	rjmp	.+766    	; 0x65a <__EEPROM_REGION_LENGTH__+0x25a>
+		if(enemyBullet[i].isActive) {
+ 35c:	9c 01       	movw	r18, r24
+ 35e:	22 0f       	add	r18, r18
+ 360:	33 1f       	adc	r19, r19
+ 362:	22 0f       	add	r18, r18
+ 364:	33 1f       	adc	r19, r19
+ 366:	22 0f       	add	r18, r18
+ 368:	33 1f       	adc	r19, r19
+ 36a:	fc 01       	movw	r30, r24
+ 36c:	ee 0f       	add	r30, r30
+ 36e:	ff 1f       	adc	r31, r31
+ 370:	e2 0f       	add	r30, r18
+ 372:	f3 1f       	adc	r31, r19
+ 374:	ef 51       	subi	r30, 0x1F	; 31
+ 376:	ff 4f       	sbci	r31, 0xFF	; 255
+ 378:	20 81       	ld	r18, Z
+ 37a:	31 81       	ldd	r19, Z+1	; 0x01
+ 37c:	23 2b       	or	r18, r19
+ 37e:	09 f4       	brne	.+2      	; 0x382 <handleEnemyBullet+0x3c>
+ 380:	02 c1       	rjmp	.+516    	; 0x586 <__EEPROM_REGION_LENGTH__+0x186>
+			enemyBullet[i].posX--;
+ 382:	9c 01       	movw	r18, r24
+ 384:	22 0f       	add	r18, r18
+ 386:	33 1f       	adc	r19, r19
+ 388:	22 0f       	add	r18, r18
+ 38a:	33 1f       	adc	r19, r19
+ 38c:	22 0f       	add	r18, r18
+ 38e:	33 1f       	adc	r19, r19
+ 390:	fc 01       	movw	r30, r24
+ 392:	ee 0f       	add	r30, r30
+ 394:	ff 1f       	adc	r31, r31
+ 396:	e2 0f       	add	r30, r18
+ 398:	f3 1f       	adc	r31, r19
+ 39a:	ef 51       	subi	r30, 0x1F	; 31
+ 39c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 39e:	a4 81       	ldd	r26, Z+4	; 0x04
+ 3a0:	b5 81       	ldd	r27, Z+5	; 0x05
+ 3a2:	9d 01       	movw	r18, r26
+ 3a4:	21 50       	subi	r18, 0x01	; 1
+ 3a6:	31 09       	sbc	r19, r1
+ 3a8:	35 83       	std	Z+5, r19	; 0x05
+ 3aa:	24 83       	std	Z+4, r18	; 0x04
+			if((enemyBullet[i].posX == 1 && enemyBullet[i].posY == playerPos) || (enemyBullet[i].posX == 0 && (enemyBullet[i].posY == playerPos-1 ||   enemyBullet[i].posY == playerPos+1)))
+ 3ac:	21 30       	cpi	r18, 0x01	; 1
+ 3ae:	31 05       	cpc	r19, r1
+ 3b0:	b9 f4       	brne	.+46     	; 0x3e0 <handleEnemyBullet+0x9a>
+ 3b2:	ac 01       	movw	r20, r24
+ 3b4:	44 0f       	add	r20, r20
+ 3b6:	55 1f       	adc	r21, r21
+ 3b8:	44 0f       	add	r20, r20
+ 3ba:	55 1f       	adc	r21, r21
+ 3bc:	44 0f       	add	r20, r20
+ 3be:	55 1f       	adc	r21, r21
+ 3c0:	fc 01       	movw	r30, r24
+ 3c2:	ee 0f       	add	r30, r30
+ 3c4:	ff 1f       	adc	r31, r31
+ 3c6:	e4 0f       	add	r30, r20
+ 3c8:	f5 1f       	adc	r31, r21
+ 3ca:	ef 51       	subi	r30, 0x1F	; 31
+ 3cc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3ce:	66 81       	ldd	r22, Z+6	; 0x06
+ 3d0:	77 81       	ldd	r23, Z+7	; 0x07
+ 3d2:	40 91 68 00 	lds	r20, 0x0068	; 0x800068 <playerPos>
+ 3d6:	50 91 69 00 	lds	r21, 0x0069	; 0x800069 <playerPos+0x1>
+ 3da:	64 17       	cp	r22, r20
+ 3dc:	75 07       	cpc	r23, r21
+ 3de:	11 f1       	breq	.+68     	; 0x424 <__EEPROM_REGION_LENGTH__+0x24>
+ 3e0:	21 15       	cp	r18, r1
+ 3e2:	31 05       	cpc	r19, r1
+ 3e4:	09 f0       	breq	.+2      	; 0x3e8 <handleEnemyBullet+0xa2>
+ 3e6:	40 c0       	rjmp	.+128    	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
+ 3e8:	ac 01       	movw	r20, r24
+ 3ea:	44 0f       	add	r20, r20
+ 3ec:	55 1f       	adc	r21, r21
+ 3ee:	44 0f       	add	r20, r20
+ 3f0:	55 1f       	adc	r21, r21
+ 3f2:	44 0f       	add	r20, r20
+ 3f4:	55 1f       	adc	r21, r21
+ 3f6:	fc 01       	movw	r30, r24
+ 3f8:	ee 0f       	add	r30, r30
+ 3fa:	ff 1f       	adc	r31, r31
+ 3fc:	e4 0f       	add	r30, r20
+ 3fe:	f5 1f       	adc	r31, r21
+ 400:	ef 51       	subi	r30, 0x1F	; 31
+ 402:	ff 4f       	sbci	r31, 0xFF	; 255
+ 404:	66 81       	ldd	r22, Z+6	; 0x06
+ 406:	77 81       	ldd	r23, Z+7	; 0x07
+ 408:	40 91 68 00 	lds	r20, 0x0068	; 0x800068 <playerPos>
+ 40c:	50 91 69 00 	lds	r21, 0x0069	; 0x800069 <playerPos+0x1>
+ 410:	fa 01       	movw	r30, r20
+ 412:	31 97       	sbiw	r30, 0x01	; 1
+ 414:	6e 17       	cp	r22, r30
+ 416:	7f 07       	cpc	r23, r31
+ 418:	29 f0       	breq	.+10     	; 0x424 <__EEPROM_REGION_LENGTH__+0x24>
+ 41a:	4f 5f       	subi	r20, 0xFF	; 255
+ 41c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 41e:	64 17       	cp	r22, r20
+ 420:	75 07       	cpc	r23, r21
+ 422:	11 f5       	brne	.+68     	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
+			{
+				enemyBullet[i].hasHit = 1;
+ 424:	ac 01       	movw	r20, r24
+ 426:	44 0f       	add	r20, r20
+ 428:	55 1f       	adc	r21, r21
+ 42a:	44 0f       	add	r20, r20
+ 42c:	55 1f       	adc	r21, r21
+ 42e:	44 0f       	add	r20, r20
+ 430:	55 1f       	adc	r21, r21
+ 432:	fc 01       	movw	r30, r24
+ 434:	ee 0f       	add	r30, r30
+ 436:	ff 1f       	adc	r31, r31
+ 438:	e4 0f       	add	r30, r20
+ 43a:	f5 1f       	adc	r31, r21
+ 43c:	ef 51       	subi	r30, 0x1F	; 31
+ 43e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 440:	41 e0       	ldi	r20, 0x01	; 1
+ 442:	50 e0       	ldi	r21, 0x00	; 0
+ 444:	53 83       	std	Z+3, r21	; 0x03
+ 446:	42 83       	std	Z+2, r20	; 0x02
+				health -= 25;
+ 448:	40 91 60 00 	lds	r20, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 44c:	50 91 61 00 	lds	r21, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 450:	49 51       	subi	r20, 0x19	; 25
+ 452:	51 09       	sbc	r21, r1
+ 454:	50 93 61 00 	sts	0x0061, r21	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 458:	40 93 60 00 	sts	0x0060, r20	; 0x800060 <__DATA_REGION_ORIGIN__>
+				if(health == 0)	{
+ 45c:	45 2b       	or	r20, r21
+ 45e:	21 f4       	brne	.+8      	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
+					playerAlive = 0;
+ 460:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <playerAlive+0x1>
+ 464:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <playerAlive>
+				}													
+			}
+			if(enemyBullet[i].posX < 0 || enemyBullet[i].hasHit) {
+ 468:	33 23       	and	r19, r19
+ 46a:	94 f0       	brlt	.+36     	; 0x490 <__EEPROM_REGION_LENGTH__+0x90>
+ 46c:	ac 01       	movw	r20, r24
+ 46e:	44 0f       	add	r20, r20
+ 470:	55 1f       	adc	r21, r21
+ 472:	44 0f       	add	r20, r20
+ 474:	55 1f       	adc	r21, r21
+ 476:	44 0f       	add	r20, r20
+ 478:	55 1f       	adc	r21, r21
+ 47a:	fc 01       	movw	r30, r24
+ 47c:	ee 0f       	add	r30, r30
+ 47e:	ff 1f       	adc	r31, r31
+ 480:	e4 0f       	add	r30, r20
+ 482:	f5 1f       	adc	r31, r21
+ 484:	ef 51       	subi	r30, 0x1F	; 31
+ 486:	ff 4f       	sbci	r31, 0xFF	; 255
+ 488:	42 81       	ldd	r20, Z+2	; 0x02
+ 48a:	53 81       	ldd	r21, Z+3	; 0x03
+ 48c:	45 2b       	or	r20, r21
+ 48e:	d9 f1       	breq	.+118    	; 0x506 <__EEPROM_REGION_LENGTH__+0x106>
+				enemyBullet[i].isActive = 0;
+ 490:	9c 01       	movw	r18, r24
+ 492:	22 0f       	add	r18, r18
+ 494:	33 1f       	adc	r19, r19
+ 496:	22 0f       	add	r18, r18
+ 498:	33 1f       	adc	r19, r19
+ 49a:	22 0f       	add	r18, r18
+ 49c:	33 1f       	adc	r19, r19
+ 49e:	fc 01       	movw	r30, r24
+ 4a0:	ee 0f       	add	r30, r30
+ 4a2:	ff 1f       	adc	r31, r31
+ 4a4:	e2 0f       	add	r30, r18
+ 4a6:	f3 1f       	adc	r31, r19
+ 4a8:	ef 51       	subi	r30, 0x1F	; 31
+ 4aa:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4ac:	11 82       	std	Z+1, r1	; 0x01
+ 4ae:	10 82       	st	Z, r1
+				enemyBullet[i].hasHit = 0;
+ 4b0:	13 82       	std	Z+3, r1	; 0x03
+ 4b2:	12 82       	std	Z+2, r1	; 0x02
+				enemyBullet[i].timeout = 5;
+ 4b4:	25 e0       	ldi	r18, 0x05	; 5
+ 4b6:	30 e0       	ldi	r19, 0x00	; 0
+ 4b8:	31 87       	std	Z+9, r19	; 0x09
+ 4ba:	20 87       	std	Z+8, r18	; 0x08
+				long eraseBulletMask = ~(0b110000000000000000000000 >> (enemyBullet[i].posX+1));
+ 4bc:	40 e0       	ldi	r20, 0x00	; 0
+ 4be:	50 e0       	ldi	r21, 0x00	; 0
+ 4c0:	60 ec       	ldi	r22, 0xC0	; 192
+ 4c2:	70 e0       	ldi	r23, 0x00	; 0
+ 4c4:	04 c0       	rjmp	.+8      	; 0x4ce <__EEPROM_REGION_LENGTH__+0xce>
+ 4c6:	75 95       	asr	r23
+ 4c8:	67 95       	ror	r22
+ 4ca:	57 95       	ror	r21
+ 4cc:	47 95       	ror	r20
+ 4ce:	aa 95       	dec	r26
+ 4d0:	d2 f7       	brpl	.-12     	; 0x4c6 <__EEPROM_REGION_LENGTH__+0xc6>
+ 4d2:	40 95       	com	r20
+ 4d4:	50 95       	com	r21
+ 4d6:	60 95       	com	r22
+ 4d8:	70 95       	com	r23
+				binImage[enemyBullet[i].posY] &= eraseBulletMask;
+ 4da:	06 80       	ldd	r0, Z+6	; 0x06
+ 4dc:	f7 81       	ldd	r31, Z+7	; 0x07
+ 4de:	e0 2d       	mov	r30, r0
+ 4e0:	ee 0f       	add	r30, r30
+ 4e2:	ff 1f       	adc	r31, r31
+ 4e4:	ee 0f       	add	r30, r30
+ 4e6:	ff 1f       	adc	r31, r31
+ 4e8:	ef 55       	subi	r30, 0x5F	; 95
+ 4ea:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4ec:	c0 80       	ld	r12, Z
+ 4ee:	d1 80       	ldd	r13, Z+1	; 0x01
+ 4f0:	e2 80       	ldd	r14, Z+2	; 0x02
+ 4f2:	f3 80       	ldd	r15, Z+3	; 0x03
+ 4f4:	4c 21       	and	r20, r12
+ 4f6:	5d 21       	and	r21, r13
+ 4f8:	6e 21       	and	r22, r14
+ 4fa:	7f 21       	and	r23, r15
+ 4fc:	40 83       	st	Z, r20
+ 4fe:	51 83       	std	Z+1, r21	; 0x01
+ 500:	62 83       	std	Z+2, r22	; 0x02
+ 502:	73 83       	std	Z+3, r23	; 0x03
+				health -= 25;
+				if(health == 0)	{
+					playerAlive = 0;
+				}													
+			}
+			if(enemyBullet[i].posX < 0 || enemyBullet[i].hasHit) {
+ 504:	a9 c0       	rjmp	.+338    	; 0x658 <__EEPROM_REGION_LENGTH__+0x258>
+				enemyBullet[i].hasHit = 0;
+				enemyBullet[i].timeout = 5;
+				long eraseBulletMask = ~(0b110000000000000000000000 >> (enemyBullet[i].posX+1));
+				binImage[enemyBullet[i].posY] &= eraseBulletMask;
+			} else {
+				long eraseBulletMask = ~(0b110000000000000000000000 >> (enemyBullet[i].posX+1));
+ 506:	40 e0       	ldi	r20, 0x00	; 0
+ 508:	50 e0       	ldi	r21, 0x00	; 0
+ 50a:	60 ec       	ldi	r22, 0xC0	; 192
+ 50c:	70 e0       	ldi	r23, 0x00	; 0
+ 50e:	6a 01       	movw	r12, r20
+ 510:	7b 01       	movw	r14, r22
+ 512:	04 c0       	rjmp	.+8      	; 0x51c <__EEPROM_REGION_LENGTH__+0x11c>
+ 514:	f5 94       	asr	r15
+ 516:	e7 94       	ror	r14
+ 518:	d7 94       	ror	r13
+ 51a:	c7 94       	ror	r12
+ 51c:	aa 95       	dec	r26
+ 51e:	d2 f7       	brpl	.-12     	; 0x514 <__EEPROM_REGION_LENGTH__+0x114>
+ 520:	c0 94       	com	r12
+ 522:	d0 94       	com	r13
+ 524:	e0 94       	com	r14
+ 526:	f0 94       	com	r15
+				binImage[enemyBullet[i].posY] &= eraseBulletMask;
+ 528:	fc 01       	movw	r30, r24
+ 52a:	ee 0f       	add	r30, r30
+ 52c:	ff 1f       	adc	r31, r31
+ 52e:	ee 0f       	add	r30, r30
+ 530:	ff 1f       	adc	r31, r31
+ 532:	ee 0f       	add	r30, r30
+ 534:	ff 1f       	adc	r31, r31
+ 536:	dc 01       	movw	r26, r24
+ 538:	aa 0f       	add	r26, r26
+ 53a:	bb 1f       	adc	r27, r27
+ 53c:	ea 0f       	add	r30, r26
+ 53e:	fb 1f       	adc	r31, r27
+ 540:	ef 51       	subi	r30, 0x1F	; 31
+ 542:	ff 4f       	sbci	r31, 0xFF	; 255
+ 544:	06 80       	ldd	r0, Z+6	; 0x06
+ 546:	f7 81       	ldd	r31, Z+7	; 0x07
+ 548:	e0 2d       	mov	r30, r0
+ 54a:	ee 0f       	add	r30, r30
+ 54c:	ff 1f       	adc	r31, r31
+ 54e:	ee 0f       	add	r30, r30
+ 550:	ff 1f       	adc	r31, r31
+ 552:	ef 55       	subi	r30, 0x5F	; 95
+ 554:	ff 4f       	sbci	r31, 0xFF	; 255
+ 556:	80 80       	ld	r8, Z
+ 558:	91 80       	ldd	r9, Z+1	; 0x01
+ 55a:	a2 80       	ldd	r10, Z+2	; 0x02
+ 55c:	b3 80       	ldd	r11, Z+3	; 0x03
+ 55e:	c8 20       	and	r12, r8
+ 560:	d9 20       	and	r13, r9
+ 562:	ea 20       	and	r14, r10
+ 564:	fb 20       	and	r15, r11
+				binImage[enemyBullet[i].posY] |= (0b110000000000000000000000 >> (enemyBullet[i].posX));
+ 566:	04 c0       	rjmp	.+8      	; 0x570 <__EEPROM_REGION_LENGTH__+0x170>
+ 568:	75 95       	asr	r23
+ 56a:	67 95       	ror	r22
+ 56c:	57 95       	ror	r21
+ 56e:	47 95       	ror	r20
+ 570:	2a 95       	dec	r18
+ 572:	d2 f7       	brpl	.-12     	; 0x568 <__EEPROM_REGION_LENGTH__+0x168>
+ 574:	4c 29       	or	r20, r12
+ 576:	5d 29       	or	r21, r13
+ 578:	6e 29       	or	r22, r14
+ 57a:	7f 29       	or	r23, r15
+ 57c:	40 83       	st	Z, r20
+ 57e:	51 83       	std	Z+1, r21	; 0x01
+ 580:	62 83       	std	Z+2, r22	; 0x02
+ 582:	73 83       	std	Z+3, r23	; 0x03
+ 584:	69 c0       	rjmp	.+210    	; 0x658 <__EEPROM_REGION_LENGTH__+0x258>
+			}
+		} else {
+			if(enemyBullet[i].timeout == 0) {
+ 586:	9c 01       	movw	r18, r24
+ 588:	22 0f       	add	r18, r18
+ 58a:	33 1f       	adc	r19, r19
+ 58c:	22 0f       	add	r18, r18
+ 58e:	33 1f       	adc	r19, r19
+ 590:	22 0f       	add	r18, r18
+ 592:	33 1f       	adc	r19, r19
+ 594:	fc 01       	movw	r30, r24
+ 596:	ee 0f       	add	r30, r30
+ 598:	ff 1f       	adc	r31, r31
+ 59a:	e2 0f       	add	r30, r18
+ 59c:	f3 1f       	adc	r31, r19
+ 59e:	ef 51       	subi	r30, 0x1F	; 31
+ 5a0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5a2:	20 85       	ldd	r18, Z+8	; 0x08
+ 5a4:	31 85       	ldd	r19, Z+9	; 0x09
+ 5a6:	21 15       	cp	r18, r1
+ 5a8:	31 05       	cpc	r19, r1
+ 5aa:	09 f0       	breq	.+2      	; 0x5ae <__EEPROM_REGION_LENGTH__+0x1ae>
+ 5ac:	43 c0       	rjmp	.+134    	; 0x634 <__EEPROM_REGION_LENGTH__+0x234>
+				if(waitForReload) {
+ 5ae:	20 91 9c 00 	lds	r18, 0x009C	; 0x80009c <waitForReload>
+ 5b2:	30 91 9d 00 	lds	r19, 0x009D	; 0x80009d <waitForReload+0x1>
+ 5b6:	21 15       	cp	r18, r1
+ 5b8:	31 05       	cpc	r19, r1
+ 5ba:	39 f0       	breq	.+14     	; 0x5ca <__EEPROM_REGION_LENGTH__+0x1ca>
+					waitForReload--;
+ 5bc:	21 50       	subi	r18, 0x01	; 1
+ 5be:	31 09       	sbc	r19, r1
+ 5c0:	30 93 9d 00 	sts	0x009D, r19	; 0x80009d <waitForReload+0x1>
+ 5c4:	20 93 9c 00 	sts	0x009C, r18	; 0x80009c <waitForReload>
+ 5c8:	47 c0       	rjmp	.+142    	; 0x658 <__EEPROM_REGION_LENGTH__+0x258>
+				} else {
+					enemyBullet[i].posX = 21;
+ 5ca:	9c 01       	movw	r18, r24
+ 5cc:	22 0f       	add	r18, r18
+ 5ce:	33 1f       	adc	r19, r19
+ 5d0:	22 0f       	add	r18, r18
+ 5d2:	33 1f       	adc	r19, r19
+ 5d4:	22 0f       	add	r18, r18
+ 5d6:	33 1f       	adc	r19, r19
+ 5d8:	fc 01       	movw	r30, r24
+ 5da:	ee 0f       	add	r30, r30
+ 5dc:	ff 1f       	adc	r31, r31
+ 5de:	e2 0f       	add	r30, r18
+ 5e0:	f3 1f       	adc	r31, r19
+ 5e2:	ef 51       	subi	r30, 0x1F	; 31
+ 5e4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5e6:	25 e1       	ldi	r18, 0x15	; 21
+ 5e8:	30 e0       	ldi	r19, 0x00	; 0
+ 5ea:	35 83       	std	Z+5, r19	; 0x05
+ 5ec:	24 83       	std	Z+4, r18	; 0x04
+					enemyBullet[i].posY = enemyPos;
+ 5ee:	20 91 64 00 	lds	r18, 0x0064	; 0x800064 <enemyPos>
+ 5f2:	30 91 65 00 	lds	r19, 0x0065	; 0x800065 <enemyPos+0x1>
+ 5f6:	37 83       	std	Z+7, r19	; 0x07
+ 5f8:	26 83       	std	Z+6, r18	; 0x06
+					enemyBullet[i].isActive = 1;
+ 5fa:	41 e0       	ldi	r20, 0x01	; 1
+ 5fc:	50 e0       	ldi	r21, 0x00	; 0
+ 5fe:	51 83       	std	Z+1, r21	; 0x01
+ 600:	40 83       	st	Z, r20
+					enemyBullet[i].timeout = 0;
+ 602:	11 86       	std	Z+9, r1	; 0x09
+ 604:	10 86       	std	Z+8, r1	; 0x08
+					binImage[enemyBullet[i].posY] |= (0b000000000000000000000110);
+ 606:	f9 01       	movw	r30, r18
+ 608:	ee 0f       	add	r30, r30
+ 60a:	ff 1f       	adc	r31, r31
+ 60c:	ee 0f       	add	r30, r30
+ 60e:	ff 1f       	adc	r31, r31
+ 610:	ef 55       	subi	r30, 0x5F	; 95
+ 612:	ff 4f       	sbci	r31, 0xFF	; 255
+ 614:	40 81       	ld	r20, Z
+ 616:	51 81       	ldd	r21, Z+1	; 0x01
+ 618:	62 81       	ldd	r22, Z+2	; 0x02
+ 61a:	73 81       	ldd	r23, Z+3	; 0x03
+ 61c:	46 60       	ori	r20, 0x06	; 6
+ 61e:	40 83       	st	Z, r20
+ 620:	51 83       	std	Z+1, r21	; 0x01
+ 622:	62 83       	std	Z+2, r22	; 0x02
+ 624:	73 83       	std	Z+3, r23	; 0x03
+					waitForReload = 3;
+ 626:	23 e0       	ldi	r18, 0x03	; 3
+ 628:	30 e0       	ldi	r19, 0x00	; 0
+ 62a:	30 93 9d 00 	sts	0x009D, r19	; 0x80009d <waitForReload+0x1>
+ 62e:	20 93 9c 00 	sts	0x009C, r18	; 0x80009c <waitForReload>
+ 632:	12 c0       	rjmp	.+36     	; 0x658 <__EEPROM_REGION_LENGTH__+0x258>
+				}
+			} else {
+				enemyBullet[i].timeout--; 
+ 634:	ac 01       	movw	r20, r24
+ 636:	44 0f       	add	r20, r20
+ 638:	55 1f       	adc	r21, r21
+ 63a:	44 0f       	add	r20, r20
+ 63c:	55 1f       	adc	r21, r21
+ 63e:	44 0f       	add	r20, r20
+ 640:	55 1f       	adc	r21, r21
+ 642:	fc 01       	movw	r30, r24
+ 644:	ee 0f       	add	r30, r30
+ 646:	ff 1f       	adc	r31, r31
+ 648:	e4 0f       	add	r30, r20
+ 64a:	f5 1f       	adc	r31, r21
+ 64c:	ef 51       	subi	r30, 0x1F	; 31
+ 64e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 650:	21 50       	subi	r18, 0x01	; 1
+ 652:	31 09       	sbc	r19, r1
+ 654:	31 87       	std	Z+9, r19	; 0x09
+ 656:	20 87       	std	Z+8, r18	; 0x08
+}
+
+void handleEnemyBullet()
+{
+	
+	for(int i = 0; i < 5; i++) {
+ 658:	01 96       	adiw	r24, 0x01	; 1
+ 65a:	85 30       	cpi	r24, 0x05	; 5
+ 65c:	91 05       	cpc	r25, r1
+ 65e:	0c f4       	brge	.+2      	; 0x662 <__EEPROM_REGION_LENGTH__+0x262>
+ 660:	7d ce       	rjmp	.-774    	; 0x35c <handleEnemyBullet+0x16>
+				enemyBullet[i].timeout--; 
+			}
+		}
+	}
+	
+}
+ 662:	ff 90       	pop	r15
+ 664:	ef 90       	pop	r14
+ 666:	df 90       	pop	r13
+ 668:	cf 90       	pop	r12
+ 66a:	bf 90       	pop	r11
+ 66c:	af 90       	pop	r10
+ 66e:	9f 90       	pop	r9
+ 670:	8f 90       	pop	r8
+ 672:	08 95       	ret
+
+00000674 <updateBullet>:
+
+
+
+void updateBullet()
+{
+ 674:	cf 92       	push	r12
+ 676:	df 92       	push	r13
+ 678:	ef 92       	push	r14
+ 67a:	ff 92       	push	r15
+ 67c:	0f 93       	push	r16
+ 67e:	1f 93       	push	r17
+	if (bulletPos)
+ 680:	80 91 a0 00 	lds	r24, 0x00A0	; 0x8000a0 <bulletPos>
+ 684:	88 23       	and	r24, r24
+ 686:	09 f4       	brne	.+2      	; 0x68a <updateBullet+0x16>
+ 688:	49 c0       	rjmp	.+146    	; 0x71c <updateBullet+0xa8>
+	{
+		bulletPosCount++;
+ 68a:	20 91 9e 00 	lds	r18, 0x009E	; 0x80009e <bulletPosCount>
+ 68e:	30 91 9f 00 	lds	r19, 0x009F	; 0x80009f <bulletPosCount+0x1>
+ 692:	2f 5f       	subi	r18, 0xFF	; 255
+ 694:	3f 4f       	sbci	r19, 0xFF	; 255
+ 696:	30 93 9f 00 	sts	0x009F, r19	; 0x80009f <bulletPosCount+0x1>
+ 69a:	20 93 9e 00 	sts	0x009E, r18	; 0x80009e <bulletPosCount>
+		if (bulletPosCount)
+ 69e:	23 2b       	or	r18, r19
+ 6a0:	e9 f1       	breq	.+122    	; 0x71c <updateBullet+0xa8>
+		{
+			long eraseBulletMask = ~(0b110000000000000000000000 >> (bulletPos-1));
+ 6a2:	28 2f       	mov	r18, r24
+ 6a4:	30 e0       	ldi	r19, 0x00	; 0
+ 6a6:	21 50       	subi	r18, 0x01	; 1
+ 6a8:	31 09       	sbc	r19, r1
+ 6aa:	40 e0       	ldi	r20, 0x00	; 0
+ 6ac:	50 e0       	ldi	r21, 0x00	; 0
+ 6ae:	60 ec       	ldi	r22, 0xC0	; 192
+ 6b0:	70 e0       	ldi	r23, 0x00	; 0
+ 6b2:	6a 01       	movw	r12, r20
+ 6b4:	7b 01       	movw	r14, r22
+ 6b6:	04 c0       	rjmp	.+8      	; 0x6c0 <updateBullet+0x4c>
+ 6b8:	f5 94       	asr	r15
+ 6ba:	e7 94       	ror	r14
+ 6bc:	d7 94       	ror	r13
+ 6be:	c7 94       	ror	r12
+ 6c0:	2a 95       	dec	r18
+ 6c2:	d2 f7       	brpl	.-12     	; 0x6b8 <updateBullet+0x44>
+ 6c4:	97 01       	movw	r18, r14
+ 6c6:	86 01       	movw	r16, r12
+ 6c8:	00 95       	com	r16
+ 6ca:	10 95       	com	r17
+ 6cc:	20 95       	com	r18
+ 6ce:	30 95       	com	r19
+			binImage[playerPos] &= eraseBulletMask;
+ 6d0:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <playerPos>
+ 6d4:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <playerPos+0x1>
+ 6d8:	ee 0f       	add	r30, r30
+ 6da:	ff 1f       	adc	r31, r31
+ 6dc:	ee 0f       	add	r30, r30
+ 6de:	ff 1f       	adc	r31, r31
+ 6e0:	ef 55       	subi	r30, 0x5F	; 95
+ 6e2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 6e4:	c0 80       	ld	r12, Z
+ 6e6:	d1 80       	ldd	r13, Z+1	; 0x01
+ 6e8:	e2 80       	ldd	r14, Z+2	; 0x02
+ 6ea:	f3 80       	ldd	r15, Z+3	; 0x03
+ 6ec:	0c 21       	and	r16, r12
+ 6ee:	1d 21       	and	r17, r13
+ 6f0:	2e 21       	and	r18, r14
+ 6f2:	3f 21       	and	r19, r15
+			bulletPos++;
+ 6f4:	8f 5f       	subi	r24, 0xFF	; 255
+ 6f6:	80 93 a0 00 	sts	0x00A0, r24	; 0x8000a0 <bulletPos>
+			binImage[playerPos] |= (0b110000000000000000000000 >> (bulletPos-1));
+ 6fa:	90 e0       	ldi	r25, 0x00	; 0
+ 6fc:	01 97       	sbiw	r24, 0x01	; 1
+ 6fe:	04 c0       	rjmp	.+8      	; 0x708 <updateBullet+0x94>
+ 700:	75 95       	asr	r23
+ 702:	67 95       	ror	r22
+ 704:	57 95       	ror	r21
+ 706:	47 95       	ror	r20
+ 708:	8a 95       	dec	r24
+ 70a:	d2 f7       	brpl	.-12     	; 0x700 <updateBullet+0x8c>
+ 70c:	40 2b       	or	r20, r16
+ 70e:	51 2b       	or	r21, r17
+ 710:	62 2b       	or	r22, r18
+ 712:	73 2b       	or	r23, r19
+ 714:	40 83       	st	Z, r20
+ 716:	51 83       	std	Z+1, r21	; 0x01
+ 718:	62 83       	std	Z+2, r22	; 0x02
+ 71a:	73 83       	std	Z+3, r23	; 0x03
+		}
+	}
+}
+ 71c:	1f 91       	pop	r17
+ 71e:	0f 91       	pop	r16
+ 720:	ff 90       	pop	r15
+ 722:	ef 90       	pop	r14
+ 724:	df 90       	pop	r13
+ 726:	cf 90       	pop	r12
+ 728:	08 95       	ret
+
+0000072a <drawBullet>:
+void drawBullet()
+{
+	if (!bulletPos)
+ 72a:	80 91 a0 00 	lds	r24, 0x00A0	; 0x8000a0 <bulletPos>
+ 72e:	81 11       	cpse	r24, r1
+ 730:	16 c0       	rjmp	.+44     	; 0x75e <drawBullet+0x34>
+	{
+		binImage[playerPos] |= 0b000110000000000000000000;
+ 732:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <playerPos>
+ 736:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <playerPos+0x1>
+ 73a:	ee 0f       	add	r30, r30
+ 73c:	ff 1f       	adc	r31, r31
+ 73e:	ee 0f       	add	r30, r30
+ 740:	ff 1f       	adc	r31, r31
+ 742:	ef 55       	subi	r30, 0x5F	; 95
+ 744:	ff 4f       	sbci	r31, 0xFF	; 255
+ 746:	80 81       	ld	r24, Z
+ 748:	91 81       	ldd	r25, Z+1	; 0x01
+ 74a:	a2 81       	ldd	r26, Z+2	; 0x02
+ 74c:	b3 81       	ldd	r27, Z+3	; 0x03
+ 74e:	a8 61       	ori	r26, 0x18	; 24
+ 750:	80 83       	st	Z, r24
+ 752:	91 83       	std	Z+1, r25	; 0x01
+ 754:	a2 83       	std	Z+2, r26	; 0x02
+ 756:	b3 83       	std	Z+3, r27	; 0x03
+		bulletPos = 4;
+ 758:	84 e0       	ldi	r24, 0x04	; 4
+ 75a:	80 93 a0 00 	sts	0x00A0, r24	; 0x8000a0 <bulletPos>
+ 75e:	08 95       	ret
+
+00000760 <updatePlayer>:
+	}
+}
+
+
+
+void updatePlayer(int direction){
+ 760:	cf 93       	push	r28
+ 762:	df 93       	push	r29
+ 764:	ec 01       	movw	r28, r24
+	
+	
+	erasePlayer();
+ 766:	0e 94 96 00 	call	0x12c	; 0x12c <erasePlayer>
+	
+	if (direction == 1){
+ 76a:	c1 30       	cpi	r28, 0x01	; 1
+ 76c:	d1 05       	cpc	r29, r1
+ 76e:	a1 f4       	brne	.+40     	; 0x798 <updatePlayer+0x38>
+		// debug
+		PORTA = PORTA | 0b00010000;
+ 770:	8b b3       	in	r24, 0x1b	; 27
+ 772:	80 61       	ori	r24, 0x10	; 16
+ 774:	8b bb       	out	0x1b, r24	; 27
+		// go up
+		playerPos --;
+ 776:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <playerPos>
+ 77a:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <playerPos+0x1>
+ 77e:	01 97       	sbiw	r24, 0x01	; 1
+ 780:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <playerPos+0x1>
+ 784:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <playerPos>
+		if (playerPos <= 1){
+ 788:	02 97       	sbiw	r24, 0x02	; 2
+ 78a:	34 f4       	brge	.+12     	; 0x798 <updatePlayer+0x38>
+			playerPos = 1;
+ 78c:	81 e0       	ldi	r24, 0x01	; 1
+ 78e:	90 e0       	ldi	r25, 0x00	; 0
+ 790:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <playerPos+0x1>
+ 794:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <playerPos>
+		}
+	}
+	
+	if (direction == 0){
+ 798:	cd 2b       	or	r28, r29
+ 79a:	a1 f4       	brne	.+40     	; 0x7c4 <updatePlayer+0x64>
+		// debug
+		PORTA = PORTA | 0b00001000;
+ 79c:	8b b3       	in	r24, 0x1b	; 27
+ 79e:	88 60       	ori	r24, 0x08	; 8
+ 7a0:	8b bb       	out	0x1b, r24	; 27
+		// go down
+		playerPos ++;
+ 7a2:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <playerPos>
+ 7a6:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <playerPos+0x1>
+ 7aa:	01 96       	adiw	r24, 0x01	; 1
+ 7ac:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <playerPos+0x1>
+ 7b0:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <playerPos>
+		if (playerPos >= 12){
+ 7b4:	0c 97       	sbiw	r24, 0x0c	; 12
+ 7b6:	34 f0       	brlt	.+12     	; 0x7c4 <updatePlayer+0x64>
+			playerPos = 12;
+ 7b8:	8c e0       	ldi	r24, 0x0C	; 12
+ 7ba:	90 e0       	ldi	r25, 0x00	; 0
+ 7bc:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <playerPos+0x1>
+ 7c0:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <playerPos>
+		}
+	}
+	
+	
+}
+ 7c4:	df 91       	pop	r29
+ 7c6:	cf 91       	pop	r28
+ 7c8:	08 95       	ret
+
+000007ca <drawEnvironment>:
+
+void drawEnvironment(){
+	if (shiftCou == 6) {
+ 7ca:	80 91 9a 00 	lds	r24, 0x009A	; 0x80009a <shiftCou>
+ 7ce:	90 91 9b 00 	lds	r25, 0x009B	; 0x80009b <shiftCou+0x1>
+ 7d2:	86 30       	cpi	r24, 0x06	; 6
+ 7d4:	91 05       	cpc	r25, r1
+ 7d6:	61 f4       	brne	.+24     	; 0x7f0 <drawEnvironment+0x26>
+		binImage[15]=0b001000111000011000001001101;
+ 7d8:	4d e4       	ldi	r20, 0x4D	; 77
+ 7da:	50 e3       	ldi	r21, 0x30	; 48
+ 7dc:	6c e1       	ldi	r22, 0x1C	; 28
+ 7de:	71 e0       	ldi	r23, 0x01	; 1
+ 7e0:	40 93 dd 00 	sts	0x00DD, r20	; 0x8000dd <binImage+0x3c>
+ 7e4:	50 93 de 00 	sts	0x00DE, r21	; 0x8000de <binImage+0x3d>
+ 7e8:	60 93 df 00 	sts	0x00DF, r22	; 0x8000df <binImage+0x3e>
+ 7ec:	70 93 e0 00 	sts	0x00E0, r23	; 0x8000e0 <binImage+0x3f>
+		
+	}
+	if (shiftCou == 12) {
+ 7f0:	8c 30       	cpi	r24, 0x0C	; 12
+ 7f2:	91 05       	cpc	r25, r1
+ 7f4:	61 f4       	brne	.+24     	; 0x80e <__DATA_REGION_LENGTH__+0xe>
+		binImage[15]=0b001000111000011001101001101;
+ 7f6:	4d e4       	ldi	r20, 0x4D	; 77
+ 7f8:	53 e3       	ldi	r21, 0x33	; 51
+ 7fa:	6c e1       	ldi	r22, 0x1C	; 28
+ 7fc:	71 e0       	ldi	r23, 0x01	; 1
+ 7fe:	40 93 dd 00 	sts	0x00DD, r20	; 0x8000dd <binImage+0x3c>
+ 802:	50 93 de 00 	sts	0x00DE, r21	; 0x8000de <binImage+0x3d>
+ 806:	60 93 df 00 	sts	0x00DF, r22	; 0x8000df <binImage+0x3e>
+ 80a:	70 93 e0 00 	sts	0x00E0, r23	; 0x8000e0 <binImage+0x3f>
+		
+	}
+	if (shiftCou == 18) {
+ 80e:	82 31       	cpi	r24, 0x12	; 18
+ 810:	91 05       	cpc	r25, r1
+ 812:	61 f4       	brne	.+24     	; 0x82c <__DATA_REGION_LENGTH__+0x2c>
+		binImage[15]=0b001000111000011011001001101;
+ 814:	4d e4       	ldi	r20, 0x4D	; 77
+ 816:	56 e3       	ldi	r21, 0x36	; 54
+ 818:	6c e1       	ldi	r22, 0x1C	; 28
+ 81a:	71 e0       	ldi	r23, 0x01	; 1
+ 81c:	40 93 dd 00 	sts	0x00DD, r20	; 0x8000dd <binImage+0x3c>
+ 820:	50 93 de 00 	sts	0x00DE, r21	; 0x8000de <binImage+0x3d>
+ 824:	60 93 df 00 	sts	0x00DF, r22	; 0x8000df <binImage+0x3e>
+ 828:	70 93 e0 00 	sts	0x00E0, r23	; 0x8000e0 <binImage+0x3f>
+		
+	}
+	if (shiftCou == 24) {
+ 82c:	48 97       	sbiw	r24, 0x18	; 24
+ 82e:	81 f4       	brne	.+32     	; 0x850 <__DATA_REGION_LENGTH__+0x50>
+		binImage[15]=0b001000111000011010101001101;
+ 830:	8d e4       	ldi	r24, 0x4D	; 77
+ 832:	95 e3       	ldi	r25, 0x35	; 53
+ 834:	ac e1       	ldi	r26, 0x1C	; 28
+ 836:	b1 e0       	ldi	r27, 0x01	; 1
+ 838:	80 93 dd 00 	sts	0x00DD, r24	; 0x8000dd <binImage+0x3c>
+ 83c:	90 93 de 00 	sts	0x00DE, r25	; 0x8000de <binImage+0x3d>
+ 840:	a0 93 df 00 	sts	0x00DF, r26	; 0x8000df <binImage+0x3e>
+ 844:	b0 93 e0 00 	sts	0x00E0, r27	; 0x8000e0 <binImage+0x3f>
+		shiftCou = 0;
+ 848:	10 92 9b 00 	sts	0x009B, r1	; 0x80009b <shiftCou+0x1>
+ 84c:	10 92 9a 00 	sts	0x009A, r1	; 0x80009a <shiftCou>
+	}
+	binImage[15]	=	binImage[15] << 1;
+ 850:	e1 ea       	ldi	r30, 0xA1	; 161
+ 852:	f0 e0       	ldi	r31, 0x00	; 0
+ 854:	84 ad       	ldd	r24, Z+60	; 0x3c
+ 856:	95 ad       	ldd	r25, Z+61	; 0x3d
+ 858:	a6 ad       	ldd	r26, Z+62	; 0x3e
+ 85a:	b7 ad       	ldd	r27, Z+63	; 0x3f
+ 85c:	88 0f       	add	r24, r24
+ 85e:	99 1f       	adc	r25, r25
+ 860:	aa 1f       	adc	r26, r26
+ 862:	bb 1f       	adc	r27, r27
+ 864:	84 af       	std	Z+60, r24	; 0x3c
+ 866:	95 af       	std	Z+61, r25	; 0x3d
+ 868:	a6 af       	std	Z+62, r26	; 0x3e
+ 86a:	b7 af       	std	Z+63, r27	; 0x3f
+	shiftCou++;
+ 86c:	80 91 9a 00 	lds	r24, 0x009A	; 0x80009a <shiftCou>
+ 870:	90 91 9b 00 	lds	r25, 0x009B	; 0x80009b <shiftCou+0x1>
+ 874:	01 96       	adiw	r24, 0x01	; 1
+ 876:	90 93 9b 00 	sts	0x009B, r25	; 0x80009b <shiftCou+0x1>
+ 87a:	80 93 9a 00 	sts	0x009A, r24	; 0x80009a <shiftCou>
+ 87e:	08 95       	ret
+
+00000880 <__vector_1>:
+	
+}
+
+
+ISR(INT0_vect)
+{
+ 880:	1f 92       	push	r1
+ 882:	0f 92       	push	r0
+ 884:	0f b6       	in	r0, 0x3f	; 63
+ 886:	0f 92       	push	r0
+ 888:	11 24       	eor	r1, r1
+ 88a:	2f 93       	push	r18
+ 88c:	3f 93       	push	r19
+ 88e:	4f 93       	push	r20
+ 890:	5f 93       	push	r21
+ 892:	6f 93       	push	r22
+ 894:	7f 93       	push	r23
+ 896:	8f 93       	push	r24
+ 898:	9f 93       	push	r25
+ 89a:	af 93       	push	r26
+ 89c:	bf 93       	push	r27
+ 89e:	ef 93       	push	r30
+ 8a0:	ff 93       	push	r31
+	drawBullet();
+ 8a2:	0e 94 95 03 	call	0x72a	; 0x72a <drawBullet>
+	while (bulletPos < 25)
+ 8a6:	3e c0       	rjmp	.+124    	; 0x924 <__vector_1+0xa4>
+	{
+		updateBullet();
+ 8a8:	0e 94 3a 03 	call	0x674	; 0x674 <updateBullet>
+		binToImage();
+ 8ac:	0e 94 66 00 	call	0xcc	; 0xcc <binToImage>
+		for (int i = 0 ; i < 6; i++)
+ 8b0:	40 e0       	ldi	r20, 0x00	; 0
+ 8b2:	50 e0       	ldi	r21, 0x00	; 0
+ 8b4:	34 c0       	rjmp	.+104    	; 0x91e <__vector_1+0x9e>
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (i == 0 && j == 0)
+ 8b6:	41 15       	cp	r20, r1
+ 8b8:	51 05       	cpc	r21, r1
+ 8ba:	31 f4       	brne	.+12     	; 0x8c8 <__vector_1+0x48>
+ 8bc:	00 97       	sbiw	r24, 0x00	; 0
+ 8be:	21 f4       	brne	.+8      	; 0x8c8 <__vector_1+0x48>
+				PORTA = PORTA & 0b11111110;
+ 8c0:	2b b3       	in	r18, 0x1b	; 27
+ 8c2:	2e 7f       	andi	r18, 0xFE	; 254
+ 8c4:	2b bb       	out	0x1b, r18	; 27
+ 8c6:	03 c0       	rjmp	.+6      	; 0x8ce <__vector_1+0x4e>
+				else
+				PORTA = PORTA | 0b00000001;
+ 8c8:	2b b3       	in	r18, 0x1b	; 27
+ 8ca:	21 60       	ori	r18, 0x01	; 1
+ 8cc:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA | 0b00000010;
+ 8ce:	2b b3       	in	r18, 0x1b	; 27
+ 8d0:	22 60       	ori	r18, 0x02	; 2
+ 8d2:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA & 0b11111101;  // shift done
+ 8d4:	2b b3       	in	r18, 0x1b	; 27
+ 8d6:	2d 7f       	andi	r18, 0xFD	; 253
+ 8d8:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA | 0b00000100;
+ 8da:	2b b3       	in	r18, 0x1b	; 27
+ 8dc:	24 60       	ori	r18, 0x04	; 4
+ 8de:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA & 0b11111011;  // store done
+ 8e0:	2b b3       	in	r18, 0x1b	; 27
+ 8e2:	2b 7f       	andi	r18, 0xFB	; 251
+ 8e4:	2b bb       	out	0x1b, r18	; 27
+				PORTB = images[i][j];
+ 8e6:	fa 01       	movw	r30, r20
+ 8e8:	ee 0f       	add	r30, r30
+ 8ea:	ff 1f       	adc	r31, r31
+ 8ec:	ee 0f       	add	r30, r30
+ 8ee:	ff 1f       	adc	r31, r31
+ 8f0:	ee 0f       	add	r30, r30
+ 8f2:	ff 1f       	adc	r31, r31
+ 8f4:	e6 59       	subi	r30, 0x96	; 150
+ 8f6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 8f8:	e8 0f       	add	r30, r24
+ 8fa:	f9 1f       	adc	r31, r25
+ 8fc:	20 81       	ld	r18, Z
+ 8fe:	28 bb       	out	0x18, r18	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 900:	e9 ef       	ldi	r30, 0xF9	; 249
+ 902:	f0 e0       	ldi	r31, 0x00	; 0
+ 904:	31 97       	sbiw	r30, 0x01	; 1
+ 906:	f1 f7       	brne	.-4      	; 0x904 <__vector_1+0x84>
+ 908:	00 c0       	rjmp	.+0      	; 0x90a <__vector_1+0x8a>
+ 90a:	00 00       	nop
+	{
+		updateBullet();
+		binToImage();
+		for (int i = 0 ; i < 6; i++)
+		{
+			for (int j = 0; j < 8; j++)
+ 90c:	01 96       	adiw	r24, 0x01	; 1
+ 90e:	02 c0       	rjmp	.+4      	; 0x914 <__vector_1+0x94>
+ 910:	80 e0       	ldi	r24, 0x00	; 0
+ 912:	90 e0       	ldi	r25, 0x00	; 0
+ 914:	88 30       	cpi	r24, 0x08	; 8
+ 916:	91 05       	cpc	r25, r1
+ 918:	74 f2       	brlt	.-100    	; 0x8b6 <__vector_1+0x36>
+	drawBullet();
+	while (bulletPos < 25)
+	{
+		updateBullet();
+		binToImage();
+		for (int i = 0 ; i < 6; i++)
+ 91a:	4f 5f       	subi	r20, 0xFF	; 255
+ 91c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 91e:	46 30       	cpi	r20, 0x06	; 6
+ 920:	51 05       	cpc	r21, r1
+ 922:	b4 f3       	brlt	.-20     	; 0x910 <__vector_1+0x90>
+
+
+ISR(INT0_vect)
+{
+	drawBullet();
+	while (bulletPos < 25)
+ 924:	80 91 a0 00 	lds	r24, 0x00A0	; 0x8000a0 <bulletPos>
+ 928:	89 31       	cpi	r24, 0x19	; 25
+ 92a:	08 f4       	brcc	.+2      	; 0x92e <__vector_1+0xae>
+ 92c:	bd cf       	rjmp	.-134    	; 0x8a8 <__vector_1+0x28>
+				PORTB = images[i][j];
+				_delay_us(1000);
+			}
+		}
+	}
+	bulletPos = 0;
+ 92e:	10 92 a0 00 	sts	0x00A0, r1	; 0x8000a0 <bulletPos>
+}
+ 932:	ff 91       	pop	r31
+ 934:	ef 91       	pop	r30
+ 936:	bf 91       	pop	r27
+ 938:	af 91       	pop	r26
+ 93a:	9f 91       	pop	r25
+ 93c:	8f 91       	pop	r24
+ 93e:	7f 91       	pop	r23
+ 940:	6f 91       	pop	r22
+ 942:	5f 91       	pop	r21
+ 944:	4f 91       	pop	r20
+ 946:	3f 91       	pop	r19
+ 948:	2f 91       	pop	r18
+ 94a:	0f 90       	pop	r0
+ 94c:	0f be       	out	0x3f, r0	; 63
+ 94e:	0f 90       	pop	r0
+ 950:	1f 90       	pop	r1
+ 952:	18 95       	reti
+
+00000954 <main>:
+
+int main(void)
+{
+	DDRC = 0xFF;
+ 954:	8f ef       	ldi	r24, 0xFF	; 255
+ 956:	84 bb       	out	0x14, r24	; 20
+	DDRA = 0xFF;
+ 958:	8a bb       	out	0x1a, r24	; 26
+	DDRB = 0xFF;
+ 95a:	87 bb       	out	0x17, r24	; 23
+	DDRD = 0x0;
+ 95c:	11 ba       	out	0x11, r1	; 17
+	PORTA = 0x1;
+ 95e:	81 e0       	ldi	r24, 0x01	; 1
+ 960:	8b bb       	out	0x1b, r24	; 27
+	
+	binImage[15]=0b00000000001110001010101;
+ 962:	85 e5       	ldi	r24, 0x55	; 85
+ 964:	9c e1       	ldi	r25, 0x1C	; 28
+ 966:	a0 e0       	ldi	r26, 0x00	; 0
+ 968:	b0 e0       	ldi	r27, 0x00	; 0
+ 96a:	80 93 dd 00 	sts	0x00DD, r24	; 0x8000dd <binImage+0x3c>
+ 96e:	90 93 de 00 	sts	0x00DE, r25	; 0x8000de <binImage+0x3d>
+ 972:	a0 93 df 00 	sts	0x00DF, r26	; 0x8000df <binImage+0x3e>
+ 976:	b0 93 e0 00 	sts	0x00E0, r27	; 0x8000e0 <binImage+0x3f>
+	
+	
+	// set up an interrupt to catch rising edge
+	GICR = (1 << INT0);
+ 97a:	80 e4       	ldi	r24, 0x40	; 64
+ 97c:	8b bf       	out	0x3b, r24	; 59
+	MCUCR = MCUCR | (1 << ISC01);
+ 97e:	85 b7       	in	r24, 0x35	; 53
+ 980:	82 60       	ori	r24, 0x02	; 2
+ 982:	85 bf       	out	0x35, r24	; 53
+	MCUCR = MCUCR & (~(1 << ISC00));
+ 984:	85 b7       	in	r24, 0x35	; 53
+ 986:	8e 7f       	andi	r24, 0xFE	; 254
+ 988:	85 bf       	out	0x35, r24	; 53
+	sei();
+ 98a:	78 94       	sei
+	
+	for (int i = 0; i < 48; i++)
+ 98c:	80 e0       	ldi	r24, 0x00	; 0
+ 98e:	90 e0       	ldi	r25, 0x00	; 0
+ 990:	13 c0       	rjmp	.+38     	; 0x9b8 <main+0x64>
+	{
+		PORTA = PORTA | 0b00000010;
+ 992:	2b b3       	in	r18, 0x1b	; 27
+ 994:	22 60       	ori	r18, 0x02	; 2
+ 996:	2b bb       	out	0x1b, r18	; 27
+		PORTA = PORTA & 0b11111101;  // shift done
+ 998:	2b b3       	in	r18, 0x1b	; 27
+ 99a:	2d 7f       	andi	r18, 0xFD	; 253
+ 99c:	2b bb       	out	0x1b, r18	; 27
+		PORTA = PORTA | 0b00000100;
+ 99e:	2b b3       	in	r18, 0x1b	; 27
+ 9a0:	24 60       	ori	r18, 0x04	; 4
+ 9a2:	2b bb       	out	0x1b, r18	; 27
+		PORTA = PORTA & 0b11111011;  // store done
+ 9a4:	2b b3       	in	r18, 0x1b	; 27
+ 9a6:	2b 7f       	andi	r18, 0xFB	; 251
+ 9a8:	2b bb       	out	0x1b, r18	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 9aa:	e9 ef       	ldi	r30, 0xF9	; 249
+ 9ac:	f0 e0       	ldi	r31, 0x00	; 0
+ 9ae:	31 97       	sbiw	r30, 0x01	; 1
+ 9b0:	f1 f7       	brne	.-4      	; 0x9ae <main+0x5a>
+ 9b2:	00 c0       	rjmp	.+0      	; 0x9b4 <main+0x60>
+ 9b4:	00 00       	nop
+	GICR = (1 << INT0);
+	MCUCR = MCUCR | (1 << ISC01);
+	MCUCR = MCUCR & (~(1 << ISC00));
+	sei();
+	
+	for (int i = 0; i < 48; i++)
+ 9b6:	01 96       	adiw	r24, 0x01	; 1
+ 9b8:	80 33       	cpi	r24, 0x30	; 48
+ 9ba:	91 05       	cpc	r25, r1
+ 9bc:	54 f3       	brlt	.-44     	; 0x992 <main+0x3e>
+		PORTA = PORTA | 0b00000100;
+		PORTA = PORTA & 0b11111011;  // store done
+		_delay_ms(1);
+	}
+	
+	initEnemyBullets();
+ 9be:	0e 94 49 00 	call	0x92	; 0x92 <initEnemyBullets>
+	while (1)
+	{
+		if(playerAlive)
+ 9c2:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <playerAlive>
+ 9c6:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <playerAlive+0x1>
+ 9ca:	89 2b       	or	r24, r25
+ 9cc:	19 f0       	breq	.+6      	; 0x9d4 <main+0x80>
+			drawPlayer();
+ 9ce:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <drawPlayer>
+ 9d2:	02 c0       	rjmp	.+4      	; 0x9d8 <main+0x84>
+		else
+		 erasePlayer();
+ 9d4:	0e 94 96 00 	call	0x12c	; 0x12c <erasePlayer>
+		drawEnvironment();
+ 9d8:	0e 94 e5 03 	call	0x7ca	; 0x7ca <drawEnvironment>
+		
+		if (PIND & 0b00000001) {
+ 9dc:	80 9b       	sbis	0x10, 0	; 16
+ 9de:	04 c0       	rjmp	.+8      	; 0x9e8 <main+0x94>
+			// button pressed
+			//_delay_ms(22);
+			
+			updatePlayer(1);
+ 9e0:	81 e0       	ldi	r24, 0x01	; 1
+ 9e2:	90 e0       	ldi	r25, 0x00	; 0
+ 9e4:	0e 94 b0 03 	call	0x760	; 0x760 <updatePlayer>
+		}
+		if (PIND & 0b00000010) {
+ 9e8:	81 9b       	sbis	0x10, 1	; 16
+ 9ea:	04 c0       	rjmp	.+8      	; 0x9f4 <main+0xa0>
+			// button pressed
+			//_delay_ms(22);
+			updatePlayer(0);
+ 9ec:	80 e0       	ldi	r24, 0x00	; 0
+ 9ee:	90 e0       	ldi	r25, 0x00	; 0
+ 9f0:	0e 94 b0 03 	call	0x760	; 0x760 <updatePlayer>
+		}
+		
+		handleEnemyMovement();
+ 9f4:	0e 94 78 01 	call	0x2f0	; 0x2f0 <handleEnemyMovement>
+		handleEnemyBullet();
+ 9f8:	0e 94 a3 01 	call	0x346	; 0x346 <handleEnemyBullet>
+		binToImage();
+ 9fc:	0e 94 66 00 	call	0xcc	; 0xcc <binToImage>
+		
+		for (int i = 0 ; i < 6; i++)
+ a00:	40 e0       	ldi	r20, 0x00	; 0
+ a02:	50 e0       	ldi	r21, 0x00	; 0
+ a04:	34 c0       	rjmp	.+104    	; 0xa6e <main+0x11a>
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (i == 0 && j == 0)
+ a06:	41 15       	cp	r20, r1
+ a08:	51 05       	cpc	r21, r1
+ a0a:	31 f4       	brne	.+12     	; 0xa18 <main+0xc4>
+ a0c:	00 97       	sbiw	r24, 0x00	; 0
+ a0e:	21 f4       	brne	.+8      	; 0xa18 <main+0xc4>
+				PORTA = PORTA & 0b11111110;
+ a10:	2b b3       	in	r18, 0x1b	; 27
+ a12:	2e 7f       	andi	r18, 0xFE	; 254
+ a14:	2b bb       	out	0x1b, r18	; 27
+ a16:	03 c0       	rjmp	.+6      	; 0xa1e <main+0xca>
+				else
+				PORTA = PORTA | 0b00000001;
+ a18:	2b b3       	in	r18, 0x1b	; 27
+ a1a:	21 60       	ori	r18, 0x01	; 1
+ a1c:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA | 0b00000010;
+ a1e:	2b b3       	in	r18, 0x1b	; 27
+ a20:	22 60       	ori	r18, 0x02	; 2
+ a22:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA & 0b11111101;  // shift done
+ a24:	2b b3       	in	r18, 0x1b	; 27
+ a26:	2d 7f       	andi	r18, 0xFD	; 253
+ a28:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA | 0b00000100;
+ a2a:	2b b3       	in	r18, 0x1b	; 27
+ a2c:	24 60       	ori	r18, 0x04	; 4
+ a2e:	2b bb       	out	0x1b, r18	; 27
+				PORTA = PORTA & 0b11111011;  // store done
+ a30:	2b b3       	in	r18, 0x1b	; 27
+ a32:	2b 7f       	andi	r18, 0xFB	; 251
+ a34:	2b bb       	out	0x1b, r18	; 27
+				PORTB = images[i][j];
+ a36:	fa 01       	movw	r30, r20
+ a38:	ee 0f       	add	r30, r30
+ a3a:	ff 1f       	adc	r31, r31
+ a3c:	ee 0f       	add	r30, r30
+ a3e:	ff 1f       	adc	r31, r31
+ a40:	ee 0f       	add	r30, r30
+ a42:	ff 1f       	adc	r31, r31
+ a44:	e6 59       	subi	r30, 0x96	; 150
+ a46:	ff 4f       	sbci	r31, 0xFF	; 255
+ a48:	e8 0f       	add	r30, r24
+ a4a:	f9 1f       	adc	r31, r25
+ a4c:	20 81       	ld	r18, Z
+ a4e:	28 bb       	out	0x18, r18	; 24
+ a50:	e9 ef       	ldi	r30, 0xF9	; 249
+ a52:	f0 e0       	ldi	r31, 0x00	; 0
+ a54:	31 97       	sbiw	r30, 0x01	; 1
+ a56:	f1 f7       	brne	.-4      	; 0xa54 <main+0x100>
+ a58:	00 c0       	rjmp	.+0      	; 0xa5a <main+0x106>
+ a5a:	00 00       	nop
+		handleEnemyBullet();
+		binToImage();
+		
+		for (int i = 0 ; i < 6; i++)
+		{
+			for (int j = 0; j < 8; j++)
+ a5c:	01 96       	adiw	r24, 0x01	; 1
+ a5e:	02 c0       	rjmp	.+4      	; 0xa64 <main+0x110>
+ a60:	80 e0       	ldi	r24, 0x00	; 0
+ a62:	90 e0       	ldi	r25, 0x00	; 0
+ a64:	88 30       	cpi	r24, 0x08	; 8
+ a66:	91 05       	cpc	r25, r1
+ a68:	74 f2       	brlt	.-100    	; 0xa06 <main+0xb2>
+		
+		handleEnemyMovement();
+		handleEnemyBullet();
+		binToImage();
+		
+		for (int i = 0 ; i < 6; i++)
+ a6a:	4f 5f       	subi	r20, 0xFF	; 255
+ a6c:	5f 4f       	sbci	r21, 0xFF	; 255
+ a6e:	46 30       	cpi	r20, 0x06	; 6
+ a70:	51 05       	cpc	r21, r1
+ a72:	b4 f3       	brlt	.-20     	; 0xa60 <main+0x10c>
+ a74:	a6 cf       	rjmp	.-180    	; 0x9c2 <main+0x6e>
+
+00000a76 <_exit>:
+ a76:	f8 94       	cli
+
+00000a78 <__stop_program>:
+ a78:	ff cf       	rjmp	.-2      	; 0xa78 <__stop_program>
